@@ -1,7 +1,6 @@
 {
   "name": "bunkerzgame",
-  "version": "0.0.1",
-  "description": "Project Bunkerz",
+  "description": "Project Bunkerz Mono Repo Root",
   "license": "MIT",
   "private": true,
   "workspaces": [
