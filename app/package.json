@@ -1,0 +1,8 @@
+{
+  "name": "@bunkerzgame/app",
+  "version": "0.1.0",
+  "description": "Bunkerz Game Application Frontend",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true
+}

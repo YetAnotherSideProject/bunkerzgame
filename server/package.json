@@ -1,0 +1,8 @@
+{
+  "name": "@bunkerzgame/server",
+  "version": "0.1.0",
+  "description": "Bunkerz Game Server Backend",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true
+}

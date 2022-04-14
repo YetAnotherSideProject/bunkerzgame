@@ -1,0 +1,15 @@
+{
+  "name": "bunkerzgame",
+  "version": "0.0.1",
+  "description": "Project Bunkerz",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "app",
+    "server",
+    "web"
+  ],
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
