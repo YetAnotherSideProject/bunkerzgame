@@ -3,10 +3,13 @@
  */
 CREATE TABLE bases (
     id serial NOT NULL,
-    player_id uuid REFERENCES players(id) NOT NULL,
+    x int,
+    y int,
+    player_id uuid REFERENCES players(id) ON DELETE SET NULL, --Wenn ein Spieler Acc gelöscht wird -> "Geister/KI Base"
     -- TODO Random Base Name
     name text NOT NULL DEFAULT md5(random() :: text),
     score int DEFAULT 0 NOT NULL,
+
     PRIMARY KEY (id)
 );
 
@@ -17,5 +20,3 @@ ALTER TABLE
 CREATE policy "Player bases are viewable by everyone." ON bases FOR
 SELECT
   USING (TRUE);
-
--- TODO Create/Update Regeln

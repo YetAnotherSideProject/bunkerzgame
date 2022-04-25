@@ -25,5 +25,3 @@ SELECT
       where id = base_id
     )
   );
-
--- TODO Weitere Regeln
