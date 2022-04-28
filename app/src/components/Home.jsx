@@ -1,12 +1,34 @@
 import { useEffect, useState, useRef } from "react";
+import { SupabaseGrid } from "@supabase/grid";
 import { supabase } from "../lib/api";
 import { RecoverPassword } from "./RecoverPassword";
 
+const postAndWait = async (url, data, options = {}, headers = {}) => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...headers,
+      },
+      body: JSON.stringify(data),
+      ...options,
+    });
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return { error };
+  }
+};
+
 export const Home = ({ user }) => {
   const [recoveryToken, setRecoveryToken] = useState(null);
-  const [todos, setTodos] = useState([]);
-  const newTaskTextRef = useRef();
-  const [errorText, setError] = useState("");
+
+  supabase
+    .from("buildings")
+    .select()
+    .then((e) => console.log(e));
 
   useEffect(() => {
     /* Recovery url is of the form
@@ -25,46 +47,7 @@ export const Home = ({ user }) => {
     if (result.type === "recovery") {
       setRecoveryToken(result.access_token);
     }
-
-    fetchTodos().catch(console.error);
   }, []);
-
-  const fetchTodos = async () => {
-    let { data: todos, error } = await supabase
-      .from("todos")
-      .select("*")
-      .order("id", { ascending: false });
-    if (error) console.log("error", error);
-    else setTodos(todos);
-  };
-
-  const deleteTodo = async (id) => {
-    try {
-      await supabase.from("todos").delete().eq("id", id);
-      setTodos(todos.filter((x) => x.id !== id));
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-
-  const addTodo = async () => {
-    let taskText = newTaskTextRef.current.value;
-    let task = taskText.trim();
-    if (task.length <= 3) {
-      setError("Task length should be more than 3!");
-    } else {
-      let { data: todo, error } = await supabase
-        .from("todos")
-        .insert({ task, user_id: user.id })
-        .single();
-      if (error) setError(error.message);
-      else {
-        setTodos([todo, ...todos]);
-        setError(null);
-        newTaskTextRef.current.value = "";
-      }
-    }
-  };
 
   const handleLogout = async () => {
     supabase.auth.signOut().catch(console.error);
@@ -78,9 +61,46 @@ export const Home = ({ user }) => {
   ) : (
     <>
       <header>
-        <span>Home</span>
         <button onClick={handleLogout}>Logout</button>
       </header>
+      <main>
+        <SupabaseGrid
+          table={"buildings"}
+          gridProps={{ height: "100%" }}
+          onError={(error) => {
+            console.log("ERROR: ", error);
+          }}
+          onAddColumn={() => {
+            console.log("add new column");
+          }}
+          onEditColumn={(columnName) => {
+            console.log("edit column: ", columnName);
+          }}
+          onDeleteColumn={(columnName) => {
+            console.log("delete column: ", columnName);
+          }}
+          onAddRow={() => {
+            console.log("add new row");
+            return {};
+          }}
+          onEditRow={(row) => {
+            console.log("edit row: ", row.idx);
+          }}
+          onSqlQuery={async (query) => {
+            const res = await postAndWait(
+              "https://vxsdstulbhooisnsjagb.supabase.co/api/sql-query",
+              { query }
+            );
+            return res;
+          }}
+          headerActions={
+            <>
+              <span>{`'{headerActions}' can be used to insert`}</span>,
+              <button>react nodes here</button>,
+            </>
+          }
+        />
+      </main>
     </>
   );
 };

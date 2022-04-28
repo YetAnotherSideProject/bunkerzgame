@@ -4,20 +4,20 @@
   "description": "Bunkerz Game Application Frontend",
   "license": "MIT",
   "private": true,
+  "source": "src/index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "parcel",
+    "build": "parcel build"
   },
   "dependencies": {
+    "@supabase/grid": "^2.6.0",
+    "@supabase/react-data-grid": "^7.1.0-beta.7",
     "@supabase/supabase-js": "^1.35.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "@supabase/ui": "^0.36.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
-    "vite": "^2.9.5"
+    "parcel": "latest"
   }
 }
