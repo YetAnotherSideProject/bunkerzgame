@@ -10,12 +10,10 @@
     "build": "parcel build"
   },
   "dependencies": {
-    "@supabase/grid": "^2.6.0",
-    "@supabase/react-data-grid": "^7.1.0-beta.7",
     "@supabase/supabase-js": "^1.35.0",
-    "@supabase/ui": "^0.36.5",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-query": "^3.38.0"
   },
   "devDependencies": {
     "parcel": "latest"
