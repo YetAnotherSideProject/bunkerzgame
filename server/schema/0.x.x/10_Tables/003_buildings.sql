@@ -15,7 +15,7 @@ CREATE TABLE buildings (
 
 /* Security Rules */
 ALTER TABLE
-  bases enable ROW LEVEL SECURITY;
+  buildings enable ROW LEVEL SECURITY;
 
 CREATE policy "Building data only visible to holding player" ON buildings FOR
 SELECT

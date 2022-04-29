@@ -8,7 +8,6 @@ CREATE TABLE bases (
     player_id uuid REFERENCES players(id) ON DELETE SET NULL, --Wenn ein Spieler Acc gelöscht wird -> "Geister/KI Base"
     -- TODO Random Base Name
     name text NOT NULL DEFAULT md5(random() :: text),
-    score int DEFAULT 0 NOT NULL,
 
     PRIMARY KEY (id)
 );

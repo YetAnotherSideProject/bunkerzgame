@@ -4,7 +4,6 @@
 CREATE TABLE players (
   id uuid REFERENCES auth.users ON DELETE CASCADE,
   username text,
-  score int DEFAULT 0 NOT NULL,
   created_at timestamp WITH time zone DEFAULT timezone('utc' :: text, NOW()) NOT NULL,
 
   PRIMARY KEY (id)
