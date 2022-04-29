@@ -22,9 +22,13 @@ SET search_path = PUBLIC
 AS $$ 
 BEGIN
   INSERT INTO
-    buildings (base_id)
-  VALUES
-    (NEW .id);
+    base_buildings (base_id, building_id, level)
+  SELECT 
+    NEW.id AS base_id,
+    id AS building_id,
+    1 AS level
+  from
+    buildings;
   RETURN NEW;
 END;
 $$;

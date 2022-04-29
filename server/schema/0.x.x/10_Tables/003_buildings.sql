@@ -1,27 +1,18 @@
 /*
- Zentrale Tabelle für alle Gebäude Stufen der Basen.
+ Zentrale Tabelle für alle verfügbaren Gebäude
  */
 CREATE TABLE buildings (
-    base_id int4 REFERENCES bases(id) NOT NULL,
-    -- TODO Random Base Name
-    townhouse int DEFAULT 0,
-    woodcutter int DEFAULT 0,
-    stonequarry int DEFAULT 0,
-    ironmine int DEFAULT 0,
-    goldmine int DEFAULT 0,
+    id SERIAL NOT NULL,
+    id_text text,
+    max_level int,
 
-    PRIMARY KEY (base_id)
+    PRIMARY KEY (id)
 );
 
 /* Security Rules */
 ALTER TABLE
   buildings enable ROW LEVEL SECURITY;
 
-CREATE policy "Building data only visible to holding player" ON buildings FOR
+CREATE policy "Building general data visible" ON buildings FOR
 SELECT
-  USING (
-    auth.uid() in (
-      select player_id from bases
-      where id = base_id
-    )
-  );
+  USING (TRUE);
