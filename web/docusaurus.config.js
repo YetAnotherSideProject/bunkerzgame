@@ -23,14 +23,14 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // repo containing /docs/**
+          editUrl: 'https://github.com/YetAnotherSideProject/bunkerzgame/tree/main/web',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo. //TODO
+          // repo containing /blog/**
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/YetAnotherSideProject/bunkerzgame/tree/main/web',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -39,12 +39,12 @@ const config = {
     ],
   ],
 
-  themeConfig: //TODO
+  themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
-        logo: {
+        title: 'Bunkerz Game',
+        logo: { // TODO
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
@@ -57,7 +57,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/YetAnotherSideProject/bunkerzgame',
             label: 'GitHub',
             position: 'right',
           },
@@ -70,13 +70,17 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Einführung',
+                to: '/docs',
+              },
+              {
+                label: 'Game Design',
+                to: '/docs/game-design/idea',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Community', // TODO
             items: [
               {
                 label: 'Stack Overflow',
@@ -100,13 +104,17 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Yet Another Side Project',
+                href: 'https://yasp.dev/',
+              },
+              {
+                label: 'YASP GitHub',
+                href: 'https://github.com/YetAnotherSideProject',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Project Bunkerz by YASP, Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
